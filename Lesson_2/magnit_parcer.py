@@ -74,7 +74,12 @@ class magnit_parcer:
                     date_list = date_str.replace('с', '', 1).replace(' ', '', 1).split('по ')
                     prod['date_from'] = c_user_date.get_date(date_list[0])
                     prod['date_to'] = c_user_date.get_date(date_list[1])
-
+                    # Если новогодние акции начинаются в прошлом году
+                    if prod['date_from'] > dt.date.today():
+                        prod['date_from'].year -= 1
+                    # может быть случай когда смотрим еще в 21 году а акция закончится в  22м!
+                    if prod['date_to'] < dt.date.today():
+                        prod['date_to'].year += 1
                 else:
                     prod[key] = getattr( prod_soup.find(value[0], attrs={'class':value[1]}) , value[2] )
 

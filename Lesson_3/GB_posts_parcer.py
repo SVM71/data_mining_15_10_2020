@@ -33,6 +33,7 @@ resp = requests.get(url, headers=headers, params=params)
 soup = BeautifulSoup(resp.text, 'lxml')
 wrapper = soup.find('div', attrs={'class': 'post-items-wrapper'})
 posts_on_pg = wrapper.find_all('div', attrs={'class': 'post-item event'})
+
 ### ==== Обход одной страницы с постами
 print( len(posts_on_pg) )
 for post in posts_on_pg[:3]:
@@ -78,6 +79,9 @@ for post in posts_on_pg[:3]:
         teg_url = f"{url_p.scheme}://{url_p.hostname}{teg_tag['href']}"
         print( f'{teg_tag.string:<30}:{teg_url}' )
     print( 'X'*20 )
+
+
+
 
 ############################################################
 # resp = requests.get(url, headers=headers, params=params)

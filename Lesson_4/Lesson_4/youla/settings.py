@@ -1,4 +1,4 @@
-# Scrapy settings for avito project
+# Scrapy settings for youla project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,13 +7,13 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'avito'
+BOT_NAME = 'youla'
 
 LOG_ENABLE = True
 LOG_LEVEL = 'DEBUG'
 
-SPIDER_MODULES = ['avito.spiders']
-NEWSPIDER_MODULE = 'avito.spiders'
+SPIDER_MODULES = ['youla.spiders']
+NEWSPIDER_MODULE = 'youla.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -49,13 +49,13 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'avito.middlewares.AvitoSpiderMiddleware': 543,
+#    'youla.middlewares.AvitoSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'avito.middlewares.AvitoDownloaderMiddleware': 543,
+#    'youla.middlewares.AvitoDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -67,7 +67,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'avito.pipelines.AvitoPipeline': 300,
+#    'youla.pipelines.AvitoPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)

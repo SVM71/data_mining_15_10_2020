@@ -2,8 +2,8 @@
 from scrapy.crawler import CrawlerProcess
 from scrapy.settings import Settings
 
-from avito import settings
-from avito.spiders.avito_spider import YoulaSpider
+from youla import settings
+from youla.spiders.youla_spider import YoulaSpider
 
 if __name__ == '__main__':
     crawl_settings = Settings()

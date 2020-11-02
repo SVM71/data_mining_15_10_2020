@@ -1,6 +1,6 @@
 import scrapy
 from pymongo import MongoClient
-
+import re
 # Источник https://auto.youla.ru/
 # Обойти все марки авто и зайти на странички объявлений
 # Собрать след стуркутру и сохранить в БД Монго
@@ -45,8 +45,17 @@ class YoulaSpider(scrapy.Spider):
         images = response.xpath('//figure[contains(@class, "PhotoGallery_photo")]/picture/img/@src').extract()
         features = Convert(response.xpath('//div[contains(@class, "AdvertSpecs_row")]//text()').extract())
         description = response.xpath('//div[contains(@class, "AdvertCard_descriptionInner")]/text()').extract_first()
-        dict = { 'name': name, 'images':images, 'features': features, 'description':description }
-
+        script = response.xpath('//script[contains(text(), "window.transitState =")]/text()').get()
+        re_str = re.compile(r"youlaId%22%2C%22([0-9a-zA-Z]+)%22%2C%22avatar")
+        user = re.search(re_str, script).group(1)
+        user_url = f'https://youla.ru/user/{user}' if user else None
+        dict = {
+            'name': name,
+            'images': images,
+            'features': features,
+            'description': description,
+            'user_url': user_url,
+        }
         # сохраняем в БД
         collection = self.db_client["parse_10"][self.name]
         collection.insert_one(dict)
@@ -72,4 +81,4 @@ class YoulaSpider(scrapy.Spider):
 #.estract() - список строк
 # для последнего можно ...)[-1].extract()
 # 'УАЗ 452 3909 2 поколение, минивэн 4 дв.'
-
+# https://youla.ru/user/5dc0f86ec6ab9e37ab6cde02?_ga=2.237274240.1404697604.1604149666-2029101521.1604149666
